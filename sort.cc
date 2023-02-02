@@ -86,7 +86,6 @@ void merge(int x[], int l, int m, int r){
 }
 
 void merge_sort(int x[], int l, int r){
-	rec++;
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
