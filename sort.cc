@@ -137,7 +137,7 @@ int main(int argc,char** argv){
 		cout << "merge sort parallel start: \n";
 		#pragma omp parallel
 		{
-			// cout << "MAX: " << omp_get_max_threads();
+			cout << "MAX: " << omp_get_max_threads();
 			#pragma omp single
 			merge_sort_parallel(X, 0, N-1);
 		}
