@@ -40,7 +40,7 @@ void merge(int x[], int l, int m, int r){
 	int n1 = m - l + 1;
 	int n2 = r - m;
 
-	cout << n1 << " " << n2;
+	// cout << n1 << " " << n2;
 
 	int L[n1], R[n2];
 
@@ -79,7 +79,7 @@ void merge(int x[], int l, int m, int r){
 void merge_sort(int x[], int l, int r){
 	if (l<r){
 		int m = l + (r-l)/2;
-		cout << l << " " << r;
+		// cout << l << " " << r;
 		merge_sort(x,l,m);
 		merge_sort(x,m+1,r);
 
