@@ -37,7 +37,7 @@ void bubble_sort(int x[], int N){
 	}
 }
 
-int L[100000000], R[100000000];
+// int L[100000000], R[100000000];
 
 void merge(int x[], int l, int m, int r){
 	int i, j, k;
@@ -47,7 +47,7 @@ void merge(int x[], int l, int m, int r){
 	// cout << n1 << " " << n2;
 	// cout << "l: " << l << "\n";
 
-	// int L[n1], R[n2];
+	int L[n1], R[n2];
 
 	// copy to temp
 	for (i=0;i<n1;i++){
@@ -96,10 +96,10 @@ void merge_sort_parallel(int x[], int l, int r){
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
-		#pragma omp task shared(x) private(L, R)
+		#pragma omp task shared(x)
 		merge_sort(x,l,m);
 
-		#pragma omp task shared(x) private(L, R)
+		#pragma omp task shared(x)
 		merge_sort(x,m+1,r);
 
 		#pragma omp taskwait
