@@ -38,6 +38,8 @@ void merge(int x[], int l, int m, int r){
 	int n1 = m - l + 1;
 	int n2 = r - m;
 
+	cout << n1 << " " << n2;
+
 	int L[n1], R[n2];
 
 	// copy to temp
