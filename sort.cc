@@ -83,7 +83,7 @@ void merge_sort(int x[], int l, int r){
 		merge_sort(x,l,m);
 		merge_sort(x,m+1,r);
 
-		merge(x,l,m,r);
+		// merge(x,l,m,r);
 	}
 }
 
