@@ -38,8 +38,12 @@ void bubble_sort(int x[], int N){
 }
 
 // int L[100000000], R[100000000];
+int L[100000000][100000000];
+int R[100000000][100000000];
+long long rec = 0;
 
 void merge(int x[], int l, int m, int r){
+	int r = rec;
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
@@ -47,41 +51,42 @@ void merge(int x[], int l, int m, int r){
 	// cout << n1 << " " << n2;
 	// cout << "l: " << l << "\n";
 
-	int L[n1], R[n2];
+	// int L[n1], R[n2];
 
 	// copy to temp
 	for (i=0;i<n1;i++){
-		L[i] = x[l+i];
+		L[r][i] = x[l+i];
 	}
 	for (j=0;j<n2;j++){
-		R[j] = x[m+1+j];
+		R[r][j] = x[m+1+j];
 	}
 	
 	// merge
 	for (i=0,j=0,k=l;i<n1 && j<n2;k++){
-		if (L[i] <= R[j]){
-			x[k] = L[i];
+		if (L[r][i] <= R[r][j]){
+			x[k] = L[r][i];
 			i++;
 		}else{
-			x[k] = R[j];
+			x[k] = R[r][j];
 			j++;
 		}
 	}
 
 	// copy remaining elements
 	while (i<n1){
-		x[k] = L[i];
+		x[k] = L[r][i];
 		i++;
 		k++;
 	}
 	while (j<n2){
-		x[k] = R[j];
+		x[k] = R[r][j];
 		j++;
 		k++;
 	}
 }
 
 void merge_sort(int x[], int l, int r){
+	rec++;
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
@@ -125,27 +130,40 @@ int main(int argc,char** argv){
 	FILE* fout = fopen(argv[2],"w");
 	for(int i = K;i < N;++i)
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
-//	#pragma omp parallel shared(X, N)
-//	{
-	 	//cout << "standard sort start: \n";
-		//std::sort(X,X + N);
 
-		//cout << "insertion sort start: \n";
-		//insertion_sort(X, N);
-		
-		//cout << "merge sort start: \n";
-		//merge_sort(X, 0, N-1);
 
-		//cout << "merge sort parallel start: \n";
-		#pragma omp parallel
-		{
-			// cout << "MAX: " << omp_get_max_threads();
-			//cout << "th: " << omp_get_thread_num() << "\n";
-			#pragma omp single
-			merge_sort_parallel(X, 0, N-1);
+		switch (3){
+
+			case 1:
+				cout << "standard sort start: \n";
+				std::sort(X,X + N);
+				break;
+
+			case 2:
+				cout << "insertion sort start: \n";
+				insertion_sort(X, N);
+				break;
+			
+			case 3:
+				cout << "merge sort start: \n";
+				merge_sort(X, 0, N-1);
+				break;
+
+			case 4:
+				cout << "merge sort parallel start: \n";
+				#pragma omp parallel
+				{
+					// cout << "MAX: " << omp_get_max_threads();
+					// cout << "th: " << omp_get_thread_num() << "\n";
+					#pragma omp single
+					merge_sort_parallel(X, 0, N-1);
+				}
+				break;
 		}
 
-//	}
+
+	 	
+
 	for(int i = 0;i < N;++i)
 		fprintf(fout,"%d\n",X[i]);
 	fclose(fout);
