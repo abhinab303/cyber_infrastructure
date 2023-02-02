@@ -142,9 +142,12 @@ Standard cpp sort:
 N: 100000
 real	0m0.044s
 user	0m0.044s
-sys	0m0.000s
+sys		0m0.000s
 
 vanila merge sort:
-
+N: 100000
+real	0m0.037s
+user	0m0.032s
+sys		0m0.005s
 
 */
