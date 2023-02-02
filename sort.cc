@@ -4,15 +4,82 @@
 #include<omp.h>
 
 
-void insertion_sort (int arr[], int N){
+void swap(int* x1, int* x2){
+    int t = *x1;
+    *x1 = *x2;
+    *x2 = t;
+}
+
+void insertion_sort (int x[], int N){
 	int i, j, k;
 	for (i=1; i<N; i++){
-		k = arr[i];
+		k = x[i];
 		j = i - 1;
-		for(;arr[j]>k && j>0;j--){
-			arr[j+1] = arr[j];
+		for(;x[j]>k && j>0;j--){
+			x[j+1] = x[j];
 		}
-		arr[j+1] = k;
+		x[j+1] = k;
+	}
+}
+
+void bubble_sort(int x[], int N){
+	int i, j;
+	for (i=0;i<n-1;i++){
+		for (j=0;j<n-i-1;j++){
+			if (x[j]>x[j+1]){
+				swap(&x[j], &x[j+1]);
+			}
+		}
+	}
+}
+
+void merge(int x[], int l, int m, int r){
+	int i, j, k;
+	int n1 = m - l + 1;
+	int n2 = r - m;
+
+	int L[n1], R[n2];
+
+	// copy to temp
+	for (i=0;i<n1;i++){
+		L[i] = x[l+1];
+	}
+	for (j=0;j<n2;j++){
+		R[j] = x[m+1+j];
+	}
+	
+	// merge
+	for (i=0,j=0,k=l;i<n1 && j<n2;k++){
+		if (L[i] <= R[j]){
+			x[k] = L[i];
+			i++;
+		}else{
+			x[k] = R[j];
+			j++;
+		}
+	}
+
+	// copy remaining elements
+	while (i<n1){
+		x[k] = L[i];
+		i++;
+		k++;
+	}
+	while (j<n2){
+		x[k] = R[j];
+		j++;
+		k++;
+	}
+}
+
+void merge_sort(int x[], int l, int r){
+	if (l<r){
+		int m = l + (r-1)/2;
+
+		merge_sort(x,l,m);
+		merge_sort(x,m+1,r);
+
+		merge(x,l,m,r);
 	}
 }
 
@@ -35,8 +102,8 @@ int main(int argc,char** argv){
 	{
 	 // std::sort(X,X + N);
 
-		insertion_sort(X, N);
-
+		// insertion_sort(X, N);
+		merge_sort(x, 0, N-1);
 
 	}
 	for(int i = 0;i < N;++i)
@@ -52,5 +119,13 @@ N: 100000
 real	0m4.634s
 user	0m4.621s
 sys		0m0.013s
+
+naive implementation of parallel on insertion sort:
+N: 100000
+real	0m4.635s
+user	0m4.629s
+sys		0m0.005s
+
+vanila merge sort:
 
 */
