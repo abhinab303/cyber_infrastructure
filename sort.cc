@@ -31,14 +31,14 @@ int main(int argc,char** argv){
 	FILE* fout = fopen(argv[2],"w");
 	for(int i = K;i < N;++i)
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
-	//#pragma omp parallel shared(X, N)
-	//{
+	#pragma omp parallel shared(X, N)
+	{
 	 // std::sort(X,X + N);
 
 		insertion_sort(X, N);
 
 
-	//}
+	}
 	for(int i = 0;i < N;++i)
 		fprintf(fout,"%d\n",X[i]);
 	fclose(fout);
@@ -46,3 +46,11 @@ int main(int argc,char** argv){
 	return 0;
 }
 
+/*
+vanila insertion sort:
+N: 100000
+real	0m4.634s
+user	0m4.621s
+sys		0m0.013s
+
+*/
