@@ -95,9 +95,10 @@ void merge_sort(int x[], int l, int r){
 int main(int argc,char** argv){
 	cout << "init: \n";
 	int N,K,A,B,C,M;
-	int X[N];
+	
 	FILE* fin = fopen(argv[1],"r");
 	fscanf(fin,"%d%d%d%d%d%d",&N,&K,&A,&B,&C,&M);
+	int X[N];
 	for(int i = 0;i < K;++i)
 		fscanf(fin,"%d",&X[i]);
 	fclose(fin);
