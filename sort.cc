@@ -41,12 +41,13 @@ void merge(int x[], int l, int m, int r){
 	int n2 = r - m;
 
 	// cout << n1 << " " << n2;
+	cout << "l: " << l << "\n";
 
 	int L[n1], R[n2];
 
 	// copy to temp
 	for (i=0;i<n1;i++){
-		L[i] = x[l+1];
+		L[i] = x[l+i];
 	}
 	for (j=0;j<n2;j++){
 		R[j] = x[m+1+j];
