@@ -37,7 +37,7 @@ void bubble_sort(int x[], int N){
 	}
 }
 
-int L[100000000], R[100000000];
+// int L[100000000], R[100000000];
 // int L[100000000][100000000];
 // int R[100000000][100000000];
 // long long rec = 0;
@@ -52,6 +52,10 @@ void merge(int x[], int l, int m, int r){
 	// cout << "l: " << l << "\n";
 
 	// int L[n1], R[n2];
+	int *L = new int[n1];
+	int *R = new int[n2];
+
+  
 
 	// copy to temp
 	for (i=0;i<n1;i++){
@@ -83,6 +87,9 @@ void merge(int x[], int l, int m, int r){
 		j++;
 		k++;
 	}
+
+	delete [] L;
+	delete [] R;
 }
 
 void merge_sort(int x[], int l, int r){
