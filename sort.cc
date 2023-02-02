@@ -3,6 +3,21 @@
 #include<algorithm>
 #include<omp.h>
 
+
+void insertion_sort (int arr[], int N){
+	int i, j, k;
+	for (i=1; i<N; i++){
+		k = arr[i];
+		j = i - 1;
+		for(;arr[j]>k && j>0;j--){
+			arr[j+1] = arr[j];
+		}
+		arr[j+1] = k;
+	}
+}
+
+
+
 int X[10000000];
 
 int main(int argc,char** argv){
@@ -16,9 +31,13 @@ int main(int argc,char** argv){
 	FILE* fout = fopen(argv[2],"w");
 	for(int i = K;i < N;++i)
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
-	// #pragma omp parallel shared(X, N)
+	//#pragma omp parallel shared(X, N)
 	//{
-	std::sort(X,X + N);
+	 // std::sort(X,X + N);
+
+		insertion_sort(X, N);
+
+
 	//}
 	for(int i = 0;i < N;++i)
 		fprintf(fout,"%d\n",X[i]);
