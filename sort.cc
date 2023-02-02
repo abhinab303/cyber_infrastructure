@@ -125,8 +125,8 @@ int main(int argc,char** argv){
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
 //	#pragma omp parallel shared(X, N)
 //	{
-	 	//cout << "standard sort start: \n";
-		//std::sort(X,X + N);
+	 	cout << "standard sort start: \n";
+		std::sort(X,X + N);
 
 		//cout << "insertion sort start: \n";
 		//insertion_sort(X, N);
@@ -134,14 +134,14 @@ int main(int argc,char** argv){
 		//cout << "merge sort start: \n";
 		//merge_sort(X, 0, N-1);
 
-		cout << "merge sort parallel start: \n";
-		#pragma omp parallel
-		{
+		//cout << "merge sort parallel start: \n";
+		//#pragma omp parallel
+		//{
 			// cout << "MAX: " << omp_get_max_threads();
-			cout << "th: " << omp_get_thread_num() << "\n";
-			#pragma omp single
-			merge_sort_parallel(X, 0, N-1);
-		}
+			//cout << "th: " << omp_get_thread_num() << "\n";
+		//	#pragma omp single
+		//	merge_sort_parallel(X, 0, N-1);
+		//}
 
 //	}
 	for(int i = 0;i < N;++i)
