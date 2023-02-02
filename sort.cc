@@ -88,6 +88,20 @@ void merge_sort(int x[], int l, int r){
 	}
 }
 
+void merge_sort_parallel(int x[], int l, int r){
+	if (l<r){
+		int m = l + (r-l)/2;
+		// cout << l << " " << r;
+		#pragma omp parallel
+		{
+		merge_sort(x,l,m);
+		merge_sort(x,m+1,r);
+		}
+
+		merge(x,l,m,r);
+	}
+}
+
 
 
 // int X[10000000];
@@ -114,8 +128,11 @@ int main(int argc,char** argv){
 		//cout << "insertion sort start: \n";
 		//insertion_sort(X, N);
 		
-		cout << "merge sort start: \n";
-		merge_sort(X, 0, N-1);
+		//cout << "merge sort start: \n";
+		//merge_sort(X, 0, N-1);
+
+		cout << "merge sort parallel start: \n";
+		merge_sort_parallel(X, 0, N-1);
 
 //	}
 	for(int i = 0;i < N;++i)
@@ -156,6 +173,11 @@ real	0m0.210s
 user	0m0.198s
 sys		0m0.012s
 
+merge sort start: 
+N: 1000000
+real	0m0.208s
+user	0m0.199s
+sys		0m0.009s
 
 
 */
