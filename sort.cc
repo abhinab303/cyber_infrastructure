@@ -107,7 +107,7 @@ void merge_sort_parallel(int x[], int l, int r){
 
 
 
-// int X[10000000];
+int X[100000000];
 
 int main(int argc,char** argv){
 	cout << "init: \n";
@@ -115,7 +115,7 @@ int main(int argc,char** argv){
 	
 	FILE* fin = fopen(argv[1],"r");
 	fscanf(fin,"%d%d%d%d%d%d",&N,&K,&A,&B,&C,&M);
-	int X[N];
+	// int X[N];
 	for(int i = 0;i < K;++i)
 		fscanf(fin,"%d",&X[i]);
 	fclose(fin);
