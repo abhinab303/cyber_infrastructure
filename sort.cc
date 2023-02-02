@@ -119,11 +119,11 @@ void merge_sort_parallel(int x[], int l, int r){
 			merge_sort(x,m+1,r);
 		// }
 
-		#pragma omp taskgroup
-		{
-			// #pragma omp taskwait
+		// #pragma omp taskgroup
+		// {
+			#pragma omp taskwait
 			merge(x,l,m,r);
-		}
+		// }
 	}
 }
 
