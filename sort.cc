@@ -109,9 +109,9 @@ int main(int argc,char** argv){
 //	{
 	 // std::sort(X,X + N);
 
-		insertion_sort(X, N);
+		//insertion_sort(X, N);
 		cout << "merge sort start: \n";
-		// merge_sort(X, 0, N-1);
+		merge_sort(X, 0, N-1);
 
 //	}
 	for(int i = 0;i < N;++i)
