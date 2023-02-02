@@ -1,1 +1,1 @@
-g++ sort.cc -o -fopenmp sort 
+g++ sort.cc -o sort -fopenmp
