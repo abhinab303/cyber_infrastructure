@@ -24,8 +24,8 @@ void insertion_sort (int x[], int N){
 
 void bubble_sort(int x[], int N){
 	int i, j;
-	for (i=0;i<n-1;i++){
-		for (j=0;j<n-i-1;j++){
+	for (i=0;i<N-1;i++){
+		for (j=0;j<N-i-1;j++){
 			if (x[j]>x[j+1]){
 				swap(&x[j], &x[j+1]);
 			}
