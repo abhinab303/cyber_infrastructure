@@ -43,7 +43,7 @@ int R[100000000][100000000];
 long long rec = 0;
 
 void merge(int x[], int l, int m, int r){
-	int r = rec;
+	int rc = rec;
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
@@ -55,31 +55,31 @@ void merge(int x[], int l, int m, int r){
 
 	// copy to temp
 	for (i=0;i<n1;i++){
-		L[r][i] = x[l+i];
+		L[rc][i] = x[l+i];
 	}
 	for (j=0;j<n2;j++){
-		R[r][j] = x[m+1+j];
+		R[rc][j] = x[m+1+j];
 	}
 	
 	// merge
 	for (i=0,j=0,k=l;i<n1 && j<n2;k++){
-		if (L[r][i] <= R[r][j]){
-			x[k] = L[r][i];
+		if (L[rc][i] <= R[rc][j]){
+			x[k] = L[rc][i];
 			i++;
 		}else{
-			x[k] = R[r][j];
+			x[k] = R[rc][j];
 			j++;
 		}
 	}
 
 	// copy remaining elements
 	while (i<n1){
-		x[k] = L[r][i];
+		x[k] = L[rc][i];
 		i++;
 		k++;
 	}
 	while (j<n2){
-		x[k] = R[r][j];
+		x[k] = R[rc][j];
 		j++;
 		k++;
 	}
