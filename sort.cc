@@ -2,6 +2,8 @@
 #include<string.h>
 #include<algorithm>
 #include<omp.h>
+#include <iostream>
+using namespace std;
 
 
 void swap(int* x1, int* x2){
