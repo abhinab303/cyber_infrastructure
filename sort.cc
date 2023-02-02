@@ -94,10 +94,10 @@ void merge_sort_parallel(int x[], int l, int r){
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
-		#pragma omp task firstprivate(x)
+		#pragma omp task shared(x)
 		merge_sort(x,l,m);
 
-		#pragma omp task firstprivate(x)
+		#pragma omp task shared(x)
 		merge_sort(x,m+1,r);
 
 		#pragma omp taskwait
@@ -137,7 +137,8 @@ int main(int argc,char** argv){
 		cout << "merge sort parallel start: \n";
 		#pragma omp parallel
 		{
-			cout << "MAX: " << omp_get_max_threads();
+			// cout << "MAX: " << omp_get_max_threads();
+			cout << "th: " << omp_get_thread_num() << "\n";
 			#pragma omp single
 			merge_sort_parallel(X, 0, N-1);
 		}
