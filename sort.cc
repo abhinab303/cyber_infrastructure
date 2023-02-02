@@ -92,6 +92,7 @@ void merge_sort(int x[], int l, int r){
 int X[10000000];
 
 int main(int argc,char** argv){
+	cout << "init: \n";
 	int N,K,A,B,C,M;
 	FILE* fin = fopen(argv[1],"r");
 	fscanf(fin,"%d%d%d%d%d%d",&N,&K,&A,&B,&C,&M);
@@ -107,6 +108,7 @@ int main(int argc,char** argv){
 	 // std::sort(X,X + N);
 
 		// insertion_sort(X, N);
+		cout << "merge sort start: \n"
 		merge_sort(X, 0, N-1);
 
 //	}
