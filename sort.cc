@@ -40,7 +40,7 @@ void bubble_sort(int x[], int N){
 // int L[100000000], R[100000000];
 int L[100000000][100000000];
 int R[100000000][100000000];
-long int rec = 0;
+int rec = 0;
 
 void merge(int x[], int l, int m, int r){
 	int rc = rec;
