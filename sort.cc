@@ -147,7 +147,7 @@ int main(int argc,char** argv){
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
 
 
-		switch(3){
+		switch(4){
 
 			case 1:
 				cout << "standard sort start: \n";
@@ -243,6 +243,13 @@ real	0m35.717s
 user	0m33.460s
 sys	0m0.409s
 correct: 4
+
+merge sort start: 
+N: 100000000
+real	0m34.445s
+user	0m32.223s
+sys	0m1.050s
+
 
 
 */
