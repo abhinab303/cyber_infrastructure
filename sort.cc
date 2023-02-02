@@ -37,13 +37,13 @@ void bubble_sort(int x[], int N){
 	}
 }
 
-// int L[100000000], R[100000000];
-int L[100000000][100000000];
-int R[100000000][100000000];
-int rec = 0;
+int L[100000000], R[100000000];
+// int L[100000000][100000000];
+// int R[100000000][100000000];
+// long long rec = 0;
 
 void merge(int x[], int l, int m, int r){
-	int rc = rec;
+	// int r = rec;
 	int i, j, k;
 	int n1 = m - l + 1;
 	int n2 = r - m;
@@ -55,31 +55,31 @@ void merge(int x[], int l, int m, int r){
 
 	// copy to temp
 	for (i=0;i<n1;i++){
-		L[rc][i] = x[l+i];
+		L[i] = x[l+i];
 	}
 	for (j=0;j<n2;j++){
-		R[rc][j] = x[m+1+j];
+		R[j] = x[m+1+j];
 	}
 	
 	// merge
 	for (i=0,j=0,k=l;i<n1 && j<n2;k++){
-		if (L[rc][i] <= R[rc][j]){
-			x[k] = L[rc][i];
+		if (L[i] <= R[j]){
+			x[k] = L[i];
 			i++;
 		}else{
-			x[k] = R[rc][j];
+			x[k] = R[j];
 			j++;
 		}
 	}
 
 	// copy remaining elements
 	while (i<n1){
-		x[k] = L[rc][i];
+		x[k] = L[i];
 		i++;
 		k++;
 	}
 	while (j<n2){
-		x[k] = R[rc][j];
+		x[k] = R[j];
 		j++;
 		k++;
 	}
@@ -132,7 +132,7 @@ int main(int argc,char** argv){
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
 
 
-		switch (3){
+		switch(3){
 
 			case 1:
 				cout << "standard sort start: \n";
