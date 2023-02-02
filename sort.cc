@@ -133,17 +133,17 @@ int main(int argc,char** argv){
 		//cout << "insertion sort start: \n";
 		//insertion_sort(X, N);
 		
-		cout << "merge sort start: \n";
-		merge_sort(X, 0, N-1);
+		//cout << "merge sort start: \n";
+		//merge_sort(X, 0, N-1);
 
 		//cout << "merge sort parallel start: \n";
-		//#pragma omp parallel
-		//{
+		#pragma omp parallel
+		{
 			// cout << "MAX: " << omp_get_max_threads();
 			//cout << "th: " << omp_get_thread_num() << "\n";
-		//	#pragma omp single
-		//	merge_sort_parallel(X, 0, N-1);
-		//}
+			#pragma omp single
+			merge_sort_parallel(X, 0, N-1);
+		}
 
 //	}
 	for(int i = 0;i < N;++i)
@@ -195,5 +195,13 @@ N: 100000000
 real	0m22.202s
 user	0m21.748s
 sys	0m0.352s
+
+merge sort start: 
+N: 100000000
+real	0m20.868s
+user	0m20.268s
+sys	0m0.502s
+
+
 
 */
