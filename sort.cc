@@ -41,7 +41,7 @@ void merge(int x[], int l, int m, int r){
 	int n2 = r - m;
 
 	// cout << n1 << " " << n2;
-	cout << "l: " << l << "\n";
+	// cout << "l: " << l << "\n";
 
 	int L[n1], R[n2];
 
@@ -107,7 +107,7 @@ int main(int argc,char** argv){
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
 //	#pragma omp parallel shared(X, N)
 //	{
-	 // std::sort(X,X + N);
+	 	std::sort(X,X + N);
 
 		//insertion_sort(X, N);
 		cout << "merge sort start: \n";

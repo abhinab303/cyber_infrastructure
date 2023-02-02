@@ -1,7 +1,7 @@
 correct_cnt=0
 timeout 60s bash compile.sh
 
-for i in {1..1}
+for i in {1..3}
 do
 	printf "\nworking on case ${i}:\n"
 	test_data=sample${i}.in
