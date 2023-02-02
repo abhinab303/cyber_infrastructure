@@ -96,10 +96,10 @@ void merge_sort_parallel(int x[], int l, int r){
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
-		#pragma omp task shared(x)
+		#pragma omp task shared(x) private(L, R)
 		merge_sort(x,l,m);
 
-		#pragma omp task shared(x)
+		#pragma omp task shared(x) private(L, R)
 		merge_sort(x,m+1,r);
 
 		#pragma omp taskwait
