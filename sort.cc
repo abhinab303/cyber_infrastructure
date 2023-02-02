@@ -98,14 +98,14 @@ int main(int argc,char** argv){
 	FILE* fout = fopen(argv[2],"w");
 	for(int i = K;i < N;++i)
 		X[i] = ((long long)A * X[i - 1] + (long long)B * X[i - 2] + C) % M;
-	#pragma omp parallel shared(X, N)
-	{
+//	#pragma omp parallel shared(X, N)
+//	{
 	 // std::sort(X,X + N);
 
 		// insertion_sort(X, N);
 		merge_sort(X, 0, N-1);
 
-	}
+//	}
 	for(int i = 0;i < N;++i)
 		fprintf(fout,"%d\n",X[i]);
 	fclose(fout);
