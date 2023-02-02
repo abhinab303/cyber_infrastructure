@@ -6,6 +6,8 @@
 using namespace std;
 
 
+#define MAX_TH 24
+
 void swap(int* x1, int* x2){
     int t = *x1;
     *x1 = *x2;
@@ -92,12 +94,13 @@ void merge_sort_parallel(int x[], int l, int r){
 	if (l<r){
 		int m = l + (r-l)/2;
 		// cout << l << " " << r;
-		#pragma omp parallel
-		{
+		#pragma omp task shared(X) if (n > MAX_TH)
 		merge_sort(x,l,m);
-		merge_sort(x,m+1,r);
-		}
 
+		#pragma omp task shared(X) if (n > MAX_TH)
+		merge_sort(x,m+1,r);
+
+		#pragma omp taskwait
 		merge(x,l,m,r);
 	}
 }
@@ -132,7 +135,13 @@ int main(int argc,char** argv){
 		//merge_sort(X, 0, N-1);
 
 		cout << "merge sort parallel start: \n";
-		merge_sort_parallel(X, 0, N-1);
+		#pragma omp parallel
+		{
+			#pragma omp single
+			{
+			merge_sort_parallel(X, 0, N-1);
+			}
+		}
 
 //	}
 	for(int i = 0;i < N;++i)
